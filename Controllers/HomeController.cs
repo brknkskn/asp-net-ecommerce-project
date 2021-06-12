@@ -68,5 +68,11 @@ namespace BitirmeProjesi.Controllers
             ).ToList();
             return View(urun);
         }
+
+        public ActionResult Slider()
+        {
+            return View();
+        }
+
     }
 }
