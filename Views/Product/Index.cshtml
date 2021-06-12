@@ -1,0 +1,103 @@
+﻿@model IEnumerable<BitirmeProjesi.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <!-- /.card -->
+
+        <div class="card">
+
+            <!-- /.card-header -->
+            <div class="card-body">
+                <a class="btn btn-primary btn-block" href="@Url.Action("Create")">Yeni Kayıt</a><br />
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Resim</th>
+                            <th>Adı</th>
+                            <th>Onaylı</th>
+                            <th>Anasayfada</th>
+                            <th>Popüler</th>
+                            <th>Kategori Adı</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                <img src="~/Content/Images/@item.Image" style="width:75px; min-width:auto; height:auto" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @if (item.IsApproved)
+                                {
+                                    <label class="label label-success" style="width:auto;"><i class="far fa-check-square" style="width:auto;"></i>Evet</label>
+                                }
+                                else
+                                {
+                                    <label class="label label-danger" style="width:auto;"><i class="far fa-times-circle" style="width:auto;"></i>Hayır</label>
+                                }
+
+                            </td>
+                            <td>
+                                @if (item.IsHome)
+                                {
+                                    <label class="label label-success" style="width:auto;"><i class="far fa-check-square" style="width:auto;"></i>Evet</label>
+                                }
+                                else
+                                {
+                                    <label class="label label-danger" style="width:auto;"><i class="far fa-times-circle" style="width:auto;"></i>Hayır</label>
+                                }
+
+                            </td>
+                            <td>
+                                @if (item.IsFeatured)
+                                {
+                                    <label class="label label-success" style="width:auto;"><i class="far fa-check-square" style="width:auto;"></i>Evet</label>
+                                }
+                                else
+                                {
+                                    <label class="label label-danger" style="width:auto;"><i class="far fa-times-circle" style="width:auto;"></i>Hayır</label>
+                                }
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.Name)
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("Edit",new { id = item.Id })" style="width:auto;"><i class="fas fa-edit" style="width:auto;"></i>Düzenle</a>
+                                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete",new { id = item.Id })" style="width:auto;"><i class="fas fa-trash" style="width:auto;"></i>Sil</a>
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Resim</th>
+                            <th>Adı</th>
+                            <th>Onaylı</th>
+                            <th>Anasayfada</th>
+                            <th>Popüler</th>
+                            <th>Kategori Adı</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+
